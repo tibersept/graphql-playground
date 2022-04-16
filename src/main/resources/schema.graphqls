@@ -1,0 +1,35 @@
+scalar DateTime
+
+schema {
+	query: Query
+	mutation: Mutation
+}
+
+type Query {
+  bookById(id: ID!): Book 
+}
+
+type Mutation {
+  createBook(id: ID!, name: String, pageCount: Int, publicationDate: DateTime, authorId: ID!): Book
+}
+
+type Book {
+  id: ID!
+  name: String
+  # the total number of pages
+  pageCount: Int
+  publicationDate: DateTime
+  author: Author
+}
+
+enum AuthorType {
+  GREAT
+  MEH
+}
+
+type Author {
+  id: ID!
+  firstName: String
+  lastName: String
+  aType: AuthorType
+}
